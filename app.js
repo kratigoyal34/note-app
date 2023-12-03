@@ -59,7 +59,7 @@ const addNote = (text = "") => {
     )
 
     note.querySelector("textarea").addEventListener(
-        "click",
+        "focusout",
         function() {
             saveNotes()
         }
