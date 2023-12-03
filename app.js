@@ -58,6 +58,12 @@ const addNote = (text = "") => {
         }
     )
 
+    note.querySelector("textarea").addEventListener(
+        "click",
+        function() {
+            saveNotes()
+        }
+    )
     main.appendChild(note);
     saveNotes()
 }
@@ -65,15 +71,14 @@ const addNote = (text = "") => {
 (
     function(){
         const lsNotes = JSON.parse(localStorage.getItem("notes"));
-        lsNotes.forEach(
+        if(lsNotes == null){
+            addNote()
+        } else{
+            lsNotes.forEach(
                 (lsNote) => {
                     addNote(lsNote)
                 }
             )
-            if(lsNotes.length == 0) {
-                localStorage.removeItem("notes")
-            } else {
-                addNote();
-            }
         }
+    }
 )()
